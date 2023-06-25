@@ -805,6 +805,7 @@ class SaleOrder(models.Model):
         self.order_line._validate_analytic_distribution()
 
         for order in self:
+            order.validate_taxes_on_sales_order()
             if order.partner_id in order.message_partner_ids:
                 continue
             order.message_subscribe([order.partner_id.id])
@@ -1028,7 +1029,6 @@ class SaleOrder(models.Model):
                 'default_partner_shipping_id': self.partner_shipping_id.id,
                 'default_invoice_payment_term_id': self.payment_term_id.id or self.partner_id.property_payment_term_id.id or self.env['account.move'].default_get(['invoice_payment_term_id']).get('invoice_payment_term_id'),
                 'default_invoice_origin': self.name,
-                'default_user_id': self.user_id.id,
             })
         action['context'] = context
         return action
@@ -1272,11 +1272,18 @@ class SaleOrder(models.Model):
         lang_code = render_context.get('lang')
         subtitles = [
             render_context['record'].name,
-            format_amount(self.env, self.amount_total, self.currency_id, lang_code=lang_code),
         ]
+
+        if self.amount_total:
+            # Do not show the price in subtitles if zero (e.g. e-commerce orders are created empty)
+            subtitles.append(
+                format_amount(self.env, self.amount_total, self.currency_id, lang_code=lang_code),
+            )
+
         if self.validity_date and self.state in ['draft', 'sent']:
             formatted_date = format_date(self.env, self.validity_date, lang_code=lang_code)
             subtitles.append(_("Expires on %(date)s", date=formatted_date))
+
         render_context['subtitles'] = subtitles
         return render_context
 
@@ -1346,7 +1353,7 @@ class SaleOrder(models.Model):
             'description': self.name,
             'amount': self.amount_total - sum(self.invoice_ids.filtered(lambda x: x.state != 'cancel' and x.invoice_line_ids.sale_line_ids.order_id == self).mapped('amount_total')),
             'currency_id': self.currency_id.id,
-            'partner_id': self.partner_id.id,
+            'partner_id': self.partner_invoice_id.id,
             'amount_max': self.amount_total,
         }
 

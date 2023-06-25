@@ -6,6 +6,7 @@
 # Felix Schubert <felix.schubert@go-erp.com>, 2022
 # Martin Trigaux, 2022
 # Kimlong Mai, 2023
+# Stefan Reisich <nafex@gmx.net>, 2023
 # Larissa Manderfeld, 2023
 # 
 msgid ""
@@ -439,7 +440,7 @@ msgstr "Klicken Sie hier, um zur Bestätigungsseite weitergeleitet zu werden."
 #. module: payment
 #: model_terms:ir.ui.view,arch_db:payment.payment_link_wizard_view_form
 msgid "Close"
-msgstr "Abschließen"
+msgstr "Schließen"
 
 #. module: payment
 #: model:ir.model.fields,field_description:payment.field_payment_provider__code
@@ -2097,6 +2098,15 @@ msgstr ""
 #: model:payment.provider,name:payment.payment_provider_transfer
 msgid "Wire Transfer"
 msgstr "Banküberweisung"
+
+#. module: payment
+#. odoo-python
+#: code:addons/payment/models/payment_provider.py:0
+#, python-format
+msgid "You cannot delete the payment provider %s; archive it instead."
+msgstr ""
+"Sie können den Zahlungsanbieter %s nicht löschen; archivieren Sie ihn "
+"stattdessen."
 
 #. module: payment
 #. odoo-python

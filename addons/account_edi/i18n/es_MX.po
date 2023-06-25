@@ -5,6 +5,7 @@
 # Translators:
 # Martin Trigaux, 2022
 # Patricia Gutiérrez Capetillo <pagc@odoo.com>, 2022
+# Iran Villalobos López, 2023
 # Fernanda Alvarez, 2023
 # 
 msgid ""
@@ -247,7 +248,7 @@ msgstr "Facturación electrónica"
 #. module: account_edi
 #: model_terms:ir.ui.view,arch_db:account_edi.view_account_invoice_filter
 msgid "Electronic invoicing processing needed"
-msgstr "Procesamiento de facturación electrónica necesario"
+msgstr "Se necesita el procesamiento de la facturación electrónica "
 
 #. module: account_edi
 #: model_terms:ir.ui.view,arch_db:account_edi.view_account_invoice_filter
@@ -350,7 +351,7 @@ msgstr "Nombre"
 #. module: account_edi
 #: model:ir.model.constraint,message:account_edi.constraint_account_edi_document_unique_edi_document_by_move_by_format
 msgid "Only one edi document by move by format"
-msgstr "Sólo un documento EDI por asiento y por formato"
+msgstr "Solo un documento EDI por movimiento y por formato"
 
 #. module: account_edi
 #: model:ir.model,name:account_edi.model_account_payment

@@ -5,6 +5,7 @@
 # Translators:
 # Martin Trigaux, 2022
 # Friederike Fasterling-Nesselbosch, 2022
+# Stefan Reisich <nafex@gmx.net>, 2023
 # Larissa Manderfeld, 2023
 # 
 msgid ""
@@ -387,7 +388,7 @@ msgstr "Karten"
 #: model_terms:ir.ui.view,arch_db:website_event.display_timer_alert_widget
 #: model_terms:ir.ui.view,arch_db:website_event.registration_attendee_details
 msgid "Close"
-msgstr "Abschließen"
+msgstr "Schließen"
 
 #. module: website_event
 #. odoo-python
@@ -859,7 +860,7 @@ msgstr "Online-Enthüllung der OpenWood-Kollektion"
 #. module: website_event
 #: model_terms:ir.ui.view,arch_db:website_event.event_description_full
 msgid "Organizer"
-msgstr "Termine und Notizen"
+msgstr "Organisator"
 
 #. module: website_event
 #: model_terms:ir.ui.view,arch_db:website_event.index_sidebar_photos

@@ -32,10 +32,10 @@
 # Svante Suominen <svante.suominen@web-veistamo.fi>, 2022
 # Veikko Väätäjä <veikko.vaataja@gmail.com>, 2022
 # Kari Lindgren <kari.lindgren@emsystems.fi>, 2022
-# Tuomo Aura <tuomo.aura@web-veistamo.fi>, 2022
 # Petteri Torssonen <info@collapick.com>, 2022
 # Martin Trigaux, 2022
 # Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2022
+# Tuomo Aura <tuomo.aura@web-veistamo.fi>, 2023
 # Ossi Mantylahti <ossi.mantylahti@obs-solutions.fi>, 2023
 # 
 msgid ""
@@ -1279,7 +1279,7 @@ msgstr "Komponentti"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production__components_availability
 msgid "Component Status"
-msgstr "Komponentin tila"
+msgstr "Komponenttien tila"
 
 #. module: mrp
 #. odoo-javascript
@@ -1329,10 +1329,13 @@ msgstr "Laske osaluettelosta"
 msgid ""
 "Compute the days required to resupply all components from BoM, by either "
 "buying or manufacturing the components and/or subassemblies."
+"                                       Also note that purchase security lead"
+" times will be added when appropriate."
 msgstr ""
 "Lasketaan päivät, jotka tarvitaan kaikkien komponenttien toimittamiseen "
 "osaluettelosta joko ostamalla tai valmistamalla komponentteja ja/tai "
-"osakokoonpanoja."
+"osakokoonpanoja.                                       Huomaa myös, että "
+"ostovakuuden läpimenoaika lisätään tarvittaessa."
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_routing_workcenter__time_computed_on
@@ -1526,11 +1529,11 @@ msgstr "Luo uusi työtilausten suorituskyky"
 #: model:ir.model.fields,help:mrp.field_product_product__days_to_prepare_mo
 #: model:ir.model.fields,help:mrp.field_product_template__days_to_prepare_mo
 msgid ""
-"Create and confirm Manufacturing Orders these many days in advance, to have enough time to replenish components or manufacture semi-finished products.\n"
-"Note that this does not affect the MO scheduled date, which still respects the just-in-time mechanism."
+"Create and confirm Manufacturing Orders this many days in advance, to have enough time to replenish components or manufacture semi-finished products.\n"
+"Note that security lead times will also be considered when appropriate."
 msgstr ""
-"Luo ja vahvista valmistustilaukset useita päiviä etukäteen, jotta sinulla on riittävästi aikaa täydentää komponentteja tai valmistaa puolivalmiita tuotteita.\n"
-"Huomaa, että tämä ei vaikuta työtilausten (MO) aikataulun mukaiseen päivämäärään, joka noudattaa edelleen just-in-time-mekanismia."
+"Luo ja vahvista valmistustilaukset näin monta päivää etukäteen, jotta sinulla on riittävästi aikaa täydentää komponentteja tai valmistaa puolivalmiita tuotteita.\n"
+"Huomaa, että tarvittaessa otetaan huomioon myös turvatoimien läpimenoaika."
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_production_backorder_form
@@ -4235,7 +4238,7 @@ msgid ""
 "in its BoM or child BoMs!"
 msgstr ""
 "Rekursiovirhe!  Tuotteella, jolla on Bill of Material, ei pitäisi olla "
-"itseään BoM:ssä tai BoM:ssä!"
+"itseään osaluettelossa tai sen johdannaisissa!"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_bom__code
@@ -5866,7 +5869,7 @@ msgid ""
 "used for a MO (related to the bom)"
 msgstr ""
 "Ohjattu, jos kulutus on varoittava / tiukka ja useampi komponentti on "
-"käytetty MO (liittyvät bom)"
+"käytetty MO (liittyvät osaluetteloon)"
 
 #. module: mrp
 #: model:ir.model,name:mrp.model_mrp_production_split_multi

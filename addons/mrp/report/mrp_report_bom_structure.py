@@ -347,11 +347,12 @@ class ReportBomStructure(models.AbstractModel):
         company = bom.company_id or self.env.company
         operation_index = 0
         for operation in bom.operation_ids:
-            if operation._skip_operation_line(product):
+            if not product or operation._skip_operation_line(product):
                 continue
             capacity = operation.workcenter_id._get_capacity(product)
             operation_cycle = float_round(qty / capacity, precision_rounding=1, rounding_method='UP')
-            duration_expected = (operation_cycle * operation.time_cycle * 100.0 / operation.workcenter_id.time_efficiency) + (operation.workcenter_id.time_stop + operation.workcenter_id.time_start)
+            duration_expected = (operation_cycle * operation.time_cycle * 100.0 / operation.workcenter_id.time_efficiency) + \
+                                operation.workcenter_id._get_expected_duration(product)
             total = ((duration_expected / 60.0) * operation.workcenter_id.costs_hour)
             operations.append({
                 'type': 'operation',
@@ -496,12 +497,13 @@ class ReportBomStructure(models.AbstractModel):
             wh_manufacture_rules = product._get_rules_from_location(product.property_stock_production, route_ids=warehouse.route_ids)
             wh_manufacture_rules -= rules
             rules_delay += sum(rule.delay for rule in wh_manufacture_rules)
+            manufacturing_lead = bom.company_id.manufacturing_lead if bom and bom.company_id else 0
             return {
                 'route_type': 'manufacture',
                 'route_name': manufacture_rules[0].route_id.display_name,
                 'route_detail': bom.display_name,
-                'lead_time': product.produce_delay + rules_delay,
-                'manufacture_delay': product.produce_delay + rules_delay,
+                'lead_time': product.produce_delay + rules_delay + manufacturing_lead,
+                'manufacture_delay': product.produce_delay + rules_delay + manufacturing_lead,
             }
         return {}
 
